@@ -140,7 +140,7 @@ class Home extends Component {
             </form>
           </Col>
           </Row>
-          {/* {console.log(this.state.NYTResults)} */}
+          
           {this.state.NYTResults.length ? (
           <Row>
             <Col size="md-12 sm-12">
@@ -148,13 +148,13 @@ class Home extends Component {
             <List>
             {this.state.NYTResults.map(article => (
                   <ListItem key={article._id}>
-                    <Link to={article.url} target="_blank">
+                    
                       <strong>
                         {article.title} 
-                        <br />{article.url} 
+                        <br /><a href={article.url}>{article.url}</a>
                         
                       </strong>
-                    </Link>
+                    
                     <SaveBtn onClick={() => this.createNewArticle(article.title, article.url)} />
                   </ListItem>
                 ))}
@@ -173,13 +173,13 @@ class Home extends Component {
               <List>
                 {this.state.articles.map(article => (
                   <ListItem key={article._id}>
-                    <Link to={article.url} target="_blank">
+                    
                       <strong>
                         Title: {article.title} 
-                        <br/>Link: {article.url} 
+                        <br/>Link: <a href={article.url}>{article.url}</a>
                         
                       </strong>
-                    </Link>
+                    
                     <DeleteBtn onClick={() => this.deleteArticle(article._id)} />
                   </ListItem>
                 ))}
