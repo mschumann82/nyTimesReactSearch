@@ -37,11 +37,13 @@ class Home extends Component {
       for (let i=0; i<(5>res.data.response.docs.length ? (res.data.response.docs.length) : 10); i++){
       const url = res.data.response.docs[i].web_url;
       const title = res.data.response.docs[i].headline.main;
+      const pub_date = res.data.response.docs[i].pub_date;
       
       const newdata = {
         
         title: title,
         url: url,
+        date: pub_date
         
       }
       data.push(newdata);
@@ -108,6 +110,11 @@ class Home extends Component {
               <h1>New York Times Article Search</h1>
               <p>Search for articles of interest!</p>
             </Jumbotron>
+          </ Col>
+        </ Row>
+        <Row>
+          <Col size="md-3">
+          
             <form>
               {/* this part is the: Topic Input */}
               <Input
@@ -135,7 +142,7 @@ class Home extends Component {
                 disabled={!(this.state.topic && this.state.from && this.state.to)}
                 onClick={this.handleSearchNYT}
               >
-                Search NYT
+                Search
               </FormBtn>
             </form>
           </Col>
@@ -152,6 +159,7 @@ class Home extends Component {
                       <strong>
                         {article.title} 
                         <br /><a href={article.url}>{article.url}</a>
+                        <br />Date published: {article.date}
                         
                       </strong>
                     
@@ -177,6 +185,7 @@ class Home extends Component {
                       <strong>
                         Title: {article.title} 
                         <br/>Link: <a href={article.url}>{article.url}</a>
+                        <br/>Date Saved: {article.date}
                         
                       </strong>
                     
@@ -185,7 +194,7 @@ class Home extends Component {
                 ))}
               </List>
             ) : (
-              <h3>No Results to Display</h3>
+              <h3>No Saved Articles</h3>
             )}
           </Col>
         </Row>

@@ -5,7 +5,7 @@ import "./DeleteBtn.css";
 // That way we don't have to define them all individually
 const DeleteBtn = props => (
   <button className="delete-btn" {...props}>
-    Remove
+    X
   </button>
 );
 
