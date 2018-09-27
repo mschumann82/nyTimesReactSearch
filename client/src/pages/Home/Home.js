@@ -27,23 +27,22 @@ class Home extends Component {
   }
 
   getOnlineNYTArticles(topic, from, to){
-    var component = this;
+    const component = this;
 
     API.getNYTArticles(topic, from, to)
     .then(function(res){
 
       if(res){
-    var data = [];
-      for (var i=0; i<(5>res.data.response.docs.length ? (res.data.response.docs.length) : 5); i++){
-      var url = res.data.response.docs[i].web_url;
-      var title = res.data.response.docs[i].headline.main;
-      var pub_date = res.data.response.docs[i].pub_date;
-      var id = res.data.response.docs[i]._id;
-      var newdata = {
-        _id: id,
+    const data = [];
+      for (let i=0; i<(5>res.data.response.docs.length ? (res.data.response.docs.length) : 10); i++){
+      const url = res.data.response.docs[i].web_url;
+      const title = res.data.response.docs[i].headline.main;
+      
+      const newdata = {
+        
         title: title,
         url: url,
-        pub_date: pub_date
+        
       }
       data.push(newdata);
       }
@@ -81,7 +80,7 @@ class Home extends Component {
 
 
   createNewArticle = (title, url) => {
-    // console.log(url);
+    console.log(title, " ", url);
     API.saveArticle({
       title: title,
       url: url,
@@ -106,8 +105,8 @@ class Home extends Component {
         <Row>
           <Col size="md-12">
             <Jumbotron>
-              <h1>New York Times Article Scrubber</h1>
-              <p>Search for an annotate articles of interest!</p>
+              <h1>New York Times Article Search</h1>
+              <p>Search for articles of interest!</p>
             </Jumbotron>
             <form>
               {/* this part is the: Topic Input */}
@@ -145,7 +144,7 @@ class Home extends Component {
           {this.state.NYTResults.length ? (
           <Row>
             <Col size="md-12 sm-12">
-            <p>5 Search Results:</p>
+            <p>Search Results:</p>
             <List>
             {this.state.NYTResults.map(article => (
                   <ListItem key={article._id}>
@@ -153,7 +152,7 @@ class Home extends Component {
                       <strong>
                         {article.title} 
                         <br />{article.url} 
-                        <br />Published at: {moment(article.pub_date).format("d/m/Y")}
+                        
                       </strong>
                     </Link>
                     <SaveBtn onClick={() => this.createNewArticle(article.title, article.url)} />
@@ -178,7 +177,7 @@ class Home extends Component {
                       <strong>
                         Title: {article.title} 
                         <br/>Link: {article.url} 
-                        <br/>Saved at: {moment(article.date).format("d/m/Y")}
+                        
                       </strong>
                     </Link>
                     <DeleteBtn onClick={() => this.deleteArticle(article._id)} />

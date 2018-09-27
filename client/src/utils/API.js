@@ -8,19 +8,19 @@ export default {
 },
   // Gets all Articles
   getArticles: function() {
-    return axios.get("/api/articles");
+    return axios.get("/api/news");
   },
   // Gets the articles with the given id
   getArticle: function(id) {
-    return axios.get("/api/articles/" + id);
+    return axios.get("/api/news/" + id);
   },
   // Deletes the articles with the given id
   deleteArticle: function(id) {
-    return axios.delete("/api/articles/" + id);
+    return axios.delete("/api/news/" + id);
   },
   // Saves a articles to the database
-  saveArticle: function(articleData) {
-    // console.log(articleData);
-    return axios.post("/api/articles", articleData);
+  saveArticle: function(newsData) {
+    console.log(newsData);
+    return axios.post("/api/news", newsData);
   }
 };
