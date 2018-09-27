@@ -19,7 +19,7 @@ const articleSeed = [
 
 db.Article
   .remove({})
-  .then(() => db.Article.collection.insertMany(articleSeed))
+  .then(() => db.Article.collection.insert(articleSeed))
   .then(data => {
     console.log(data.result.n + " records inserted!");
     process.exit(0);

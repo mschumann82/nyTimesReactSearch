@@ -23,6 +23,7 @@
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
     "if-env": "^1.0.4",
+    "moment": "^2.22.2",
     "mongoose": "^5.0.17"
   },
   "repository": {
